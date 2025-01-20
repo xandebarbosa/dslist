@@ -20,7 +20,12 @@ public class Game {
     private String platforms;
     private Double score;
     private String imgUrl;
+
+    //DEFININDO OS CAMPOS ABAIXO COMO TIPO TEXTO PARA ACEITTAREM MAIS QUE 255 CARACTERES QUE PÉ O PADRÃO PARA O TIPO STRING
+    @Column(columnDefinition = "TEXT")
     private String shortDescription;
+
+    @Column(columnDefinition = "TEXT")
     private String longDescription;
 
     public Game() {}
