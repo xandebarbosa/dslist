@@ -7,14 +7,15 @@ package com.alexandre.dslist.services;
 // para reaproveitar. Para registrar basta colocar @Component, podemos colocar um apelido @Service, vai registrar como sendo um componente do sistema
 // Podemos injetarr um componente no outro, qdo fazemos a composição de componentes, chamamos de injetar
 
+import com.alexandre.dslist.dto.GameDTO;
 import com.alexandre.dslist.dto.GameMinDTO;
 import com.alexandre.dslist.entities.Game;
 import com.alexandre.dslist.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class GameService {
@@ -22,6 +23,14 @@ public class GameService {
     //para implementar findAll vamos Injetar o GameRepository
     @Autowired
     private GameRepository gameRepository;
+
+    @Transactional(readOnly = true)
+    public GameDTO findById(Long id) {
+        Game result = gameRepository.findById(id).get();
+        GameDTO gameDTO = new GameDTO(result);
+        return gameDTO;
+    }
+
     //Vai devolver uma list de games resumidos GameMinDTO
     public List<GameMinDTO> findAll() {
         List<Game> result = gameRepository.findAll();
