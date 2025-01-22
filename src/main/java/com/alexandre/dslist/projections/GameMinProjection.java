@@ -14,7 +14,7 @@ public interface GameMinProjection {
     // Retorna o título do jogo.
     String getTitle();
     // Retorna o ano de lançamento do jogo.
-    Integer getYear();
+    Integer getGameYear();
     // Retorna a URL da imagem do jogo.
     String getImgUrl();
     // Retorna uma descrição curta do jogo.
