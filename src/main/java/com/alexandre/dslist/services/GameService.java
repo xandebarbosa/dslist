@@ -32,6 +32,18 @@ public class GameService {
         return gameDTO;
     }
 
+    public GameDTO insert(GameDTO gameDTO) {
+        Game game = new Game();
+        game.setTitle(gameDTO.getTitle());
+        game.setYear(gameDTO.getYear());
+        game.setGenre(gameDTO.getGenre());
+        game.setPlatforms(gameDTO.getPlatforms());
+        game.setScore(gameDTO.getScore());
+        game.setImgUrl(gameDTO.getImgUrl());
+        game = gameRepository.save(game);
+        return new GameDTO(game);
+    }
+
     //Vai devolver uma list de games resumidos GameMinDTO
     @Transactional(readOnly = true)
     public List<GameMinDTO> findAll() {

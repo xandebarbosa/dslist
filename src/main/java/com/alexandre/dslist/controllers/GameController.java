@@ -5,10 +5,7 @@ import com.alexandre.dslist.dto.GameMinDTO;
 import com.alexandre.dslist.entities.Game;
 import com.alexandre.dslist.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +26,12 @@ public class GameController {
     @GetMapping
     public List<GameMinDTO> findAll() {
         List<GameMinDTO> result = gameService.findAll();
+        return result;
+    }
+
+    @PostMapping
+    public GameDTO insert(@RequestBody GameDTO gameDTO) {
+        GameDTO result = gameService.insert(gameDTO);
         return result;
     }
 }
