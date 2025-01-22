@@ -32,6 +32,7 @@ public class GameService {
     }
 
     //Vai devolver uma list de games resumidos GameMinDTO
+    @Transactional(readOnly = true)
     public List<GameMinDTO> findAll() {
         List<Game> result = gameRepository.findAll();
         //List de GameMinDTO para obter os dados minimos
