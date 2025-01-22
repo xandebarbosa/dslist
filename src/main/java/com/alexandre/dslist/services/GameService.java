@@ -10,6 +10,7 @@ package com.alexandre.dslist.services;
 import com.alexandre.dslist.dto.GameDTO;
 import com.alexandre.dslist.dto.GameMinDTO;
 import com.alexandre.dslist.entities.Game;
+import com.alexandre.dslist.projections.GameMinProjection;
 import com.alexandre.dslist.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,12 @@ public class GameService {
         //e para voltar esse stream para ua lista normal colocamos no final .toList
         List<GameMinDTO> dto = result.stream().map(game -> new GameMinDTO(game)).toList();
         return dto;
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(Long listId) {
+        List<GameMinProjection> result = gameRepository.searchByList(listId);
+        return result.stream().map(game -> new GameMinDTO(game)).toList();
+
     }
 }
